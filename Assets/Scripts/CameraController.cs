@@ -7,18 +7,27 @@ public class CameraController : MonoBehaviour
 
     public GameObject target;
 
-    private Vector3 offset;    
+    public GameController gameController;
+
+    public float yOffset;    
 
 
     // Start is called before the first frame update
     void Start()
     {
-        offset = transform.position - target.transform.position;
+        gameController.cameraFieldOfView = GetComponent<Camera>().fieldOfView;
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
-        transform.position = target.transform.position + offset;
+        Vector3 pos = new Vector3(target.transform.position.x, target.transform.position.y + yOffset, target.transform.position.z);
+
+        /*if (gameController.CanCameraMove(pos))
+        {
+            transform.position = pos;
+        };*/
+
+        transform.position = pos;
     }
 }

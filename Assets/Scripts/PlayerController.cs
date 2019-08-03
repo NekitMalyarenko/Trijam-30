@@ -5,7 +5,11 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
+    public float timer;
+
     public float speed;
+
+    public GameController gameController;
 
     private Rigidbody rb;
 
@@ -13,6 +17,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        gameController.InitGame();
+        gameController.NextLevel(gameObject);
     }
 
     // Update is called once per frame
@@ -44,7 +50,30 @@ public class PlayerController : MonoBehaviour
         if (movement != Vector3.zero)
         {
             //print(rb.velocity);
-            rb.velocity = movement * speed;
+            rb.MovePosition(rb.transform.position +  movement * speed);
+        }
+    }
+
+    private void Update()
+    {
+
+        if (timer >= 0 && rb.velocity == Vector3.zero)
+        {
+            timer -= Time.deltaTime;
+        }
+    }
+
+
+    void OnCollisionEnter(Collision collision)
+    {
+        foreach (ContactPoint contact in collision.contacts)
+        {
+
+            if (contact.otherCollider.gameObject.tag == "Finish")
+            {
+                gameController.NextLevel(gameObject);
+                return;
+            }
         }
     }
 }
