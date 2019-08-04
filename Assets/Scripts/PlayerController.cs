@@ -76,4 +76,9 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+    void OnDestroy()
+    {
+        Application.Quit();
+    }
 }

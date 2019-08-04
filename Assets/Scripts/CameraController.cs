@@ -21,13 +21,16 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        Vector3 pos = new Vector3(target.transform.position.x, target.transform.position.y + yOffset, target.transform.position.z);
-
-        /*if (gameController.CanCameraMove(pos))
+        if (target != null)
         {
-            transform.position = pos;
-        };*/
+            Vector3 pos = new Vector3(target.transform.position.x, target.transform.position.y + yOffset, target.transform.position.z);
 
-        transform.position = pos;
+            /*if (gameController.CanCameraMove(pos))
+            {
+                transform.position = pos;
+            };*/
+
+            transform.position = pos;
+        }
     }
 }

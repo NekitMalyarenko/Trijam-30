@@ -119,8 +119,13 @@ public class GameController : MonoBehaviour
 
     private void Show(GameObject root)
     {
-        print(root);
+
         root.SetActive(true);
+        /*Renderer renderer = root.GetComponent<Renderer>();
+        if (renderer != null)
+        {
+            renderer.enabled = true;
+        }
 
         Transform[] children = root.GetComponentsInChildren<Transform>(true);
         if (children != null && children.Length > 1)
@@ -129,7 +134,7 @@ public class GameController : MonoBehaviour
             {
                 this.Show(children[i].gameObject);
             }
-        }
+        }*/
     }
 
 
@@ -137,13 +142,13 @@ public class GameController : MonoBehaviour
     {
         root.SetActive(false);
 
-        Transform[] children = root.GetComponentsInChildren<Transform>();
+        /*Transform[] children = root.GetComponentsInChildren<Transform>();
         if (children != null && children.Length > 1)
         {
             for (int i = 1; i < children.Length; i++)
             {
                 this.Hide(children[i].gameObject);
             }
-        }
+        }*/
     }
 }
